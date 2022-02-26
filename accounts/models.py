@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,AbstractBaseUser
 )
+#from django.contrib.auth.models import User
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
@@ -53,7 +54,7 @@ class Profile(models.Model):
         ('Male', 'Male'),
         ('Female', 'Female')
     )
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_profile')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='user_profile')
     full_name = models.CharField(max_length=100)
     profession = models.CharField(max_length=50)
     description = models.TextField()
